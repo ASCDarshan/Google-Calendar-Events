@@ -72,39 +72,72 @@ function App() {
       });
   }
 
-  console.log(start);
-  console.log(end);
-  console.log(eventName);
-  console.log(eventDescription);
-
   return (
     <div className="App">
-      <div style={{ width: "400px", margin: "30px auto" }}>
+      <div
+        className="container mt-5 p-4 border rounded shadow"
+        style={{ maxWidth: "400px" }}
+      >
         {session ? (
           <>
-            <h2>Hey there {session.user.email}</h2>
-            <p>Start of your event</p>
-            <DateTimePicker onChange={setStart} value={start} />
-            <p>End of your event</p>
-            <DateTimePicker onChange={setEnd} value={end} />
-            <p>Event name</p>
-            <input type="text" onChange={(e) => setEventName(e.target.value)} />
-            <p>Event description</p>
-            <input
-              type="text"
-              onChange={(e) => setEventDescription(e.target.value)}
-            />
+            <h4 className="text-center mb-4">
+              Hey there, {session.user.email}
+            </h4>
+            <div className="mb-3">
+              <label className="form-label">Start of your event</label>
+              <DateTimePicker
+                onChange={setStart}
+                value={start}
+                className="form-control"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">End of your event</label>
+              <DateTimePicker
+                onChange={setEnd}
+                value={end}
+                className="form-control"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Event name</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter event name"
+                onChange={(e) => setEventName(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Event description</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter event description"
+                onChange={(e) => setEventDescription(e.target.value)}
+              />
+            </div>
             <hr />
-            <button onClick={() => createCalendarEvent()}>
+            <button
+              className="btn btn-primary w-100 mb-2"
+              onClick={() => createCalendarEvent()}
+            >
               Create Calendar Event
             </button>
-            <p></p>
-            <button onClick={() => signOut()}>Sign Out</button>
+            <button
+              className="btn btn-outline-danger w-100"
+              onClick={() => signOut()}
+            >
+              Sign Out
+            </button>
           </>
         ) : (
-          <>
-            <button onClick={() => googleSignIn()}>Sign In With Google</button>
-          </>
+          <button
+            className="btn btn-success w-100"
+            onClick={() => googleSignIn()}
+          >
+            Sign In With Google
+          </button>
         )}
       </div>
     </div>
